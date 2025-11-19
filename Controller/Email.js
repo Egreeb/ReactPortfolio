@@ -7,12 +7,18 @@ export const Email = async(req,res)=>{
     //  console.log(fullname, email, message)
     try {
         let transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,             
             service: 'gmail',
             auth : {
                 user: process.env.ADMIN_EMAIL,
                 pass: process.env.PASSWORD,
             }
+               tls: { ciphers: 'TLSv1.2' },
+                 connectionTimeout: 10000
         });
+          await transporter.verify()
 
         await transporter.sendMail({
             from: process.env.ADMIN_EMAIL,
