@@ -15,10 +15,7 @@ export const Email = async(req,res)=>{
                 user: process.env.ADMIN_EMAIL,
                 pass: process.env.PASSWORD,
             }
-               tls: { ciphers: 'TLSv1.2' },
-                 connectionTimeout: 10000
         });
-          await transporter.verify()
 
         await transporter.sendMail({
             from: process.env.ADMIN_EMAIL,
